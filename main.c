@@ -15,18 +15,18 @@ void* reduce(void* (functionPointer)(void*), void *datapointer) {
             perror("Did not create thread");
         }
     }
-    int globalMul = 1;
+    int resultMul = 1;
     int* r;
     for (int i = 0; i < N; i++) {
         if (pthread_join(threadHandle[i], (void**) &r) != 0) {
             perror("Did not join thread");
         }
-        globalMul *= (*r);
+        resultMul *= (*r);
         
         free(r);
     }
-    printf("%d\n",globalMul);
-	int* c = &globalMul;
+    printf("%d\n",resultMul);
+	int* c = &resultMul;
     void* v = c;
 	return v;
 	
